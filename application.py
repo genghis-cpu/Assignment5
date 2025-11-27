@@ -280,8 +280,9 @@ class ETL():
 etl = ETL()
 
 # Start the ETL process
-p = Process(target=etl.run)
-p.start()
+if __name__ == "__main__":
+    p = Process(target=etl.run)
+    p.start()
 
 
 # https://stackoverflow.com/questions/19473250/how-to-get-user-email-after-oauth-with-google-api-python-client
@@ -818,27 +819,27 @@ def authorize():
   # for the OAuth 2.0 client, which you configured in the API Console. If this
   # value doesn't match an authorized URI, you will get a 'redirect_uri_mismatch'
   # error.
-  redirect_uri = flask.url_for('oauth2callback', _external=True)
-  parts = redirect_uri.split("/oauth2callback")
-  print(parts)
-  if ":5009" not in redirect_uri:
-    flow.redirect_uri = parts[0] + ":5009/oauth2callback"
-  else:
-    flow.redirect_uri = redirect_uri
-  print(flow.redirect_uri)
+    redirect_uri = flask.url_for('oauth2callback', _external=True)
+    parts = redirect_uri.split("/oauth2callback")
+    print(parts)
+    if ":5009" not in redirect_uri:
+        flow.redirect_uri = parts[0] + ":5009/oauth2callback"
+    else:
+        flow.redirect_uri = redirect_uri
+    print(flow.redirect_uri)
 
-  authorization_url, state = flow.authorization_url(
-      # Enable offline access so that you can refresh an access token without
+    authorization_url, state = flow.authorization_url(
+        # Enable offline access so that you can refresh an access token without
       # re-prompting the user for permission. Recommended for web server apps.
-      access_type='offline',
+        access_type='offline',
       # Enable incremental authorization. Recommended as a best practice.
-      include_granted_scopes='true')
+        include_granted_scopes='true')
 
   # Store the state so the callback can verify the auth server response.
-  flask.session['state'] = state
-  print("Authorization URL:" + authorization_url)
+    flask.session['state'] = state
+    print("Authorization URL:" + authorization_url)
 
-  return flask.redirect(authorization_url)
+    return flask.redirect(authorization_url)
 
 
 @app.route('/oauth2callback')

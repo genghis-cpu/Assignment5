@@ -1,0 +1,270 @@
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA temp.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA temp.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA temp.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA temp.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+PRAGMA temp.table_info("weatherparameter")
+[raw sql] ()
+
+CREATE TABLE admin (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	password VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+[no key 0.00003s] ()
+
+CREATE TABLE user (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	password VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+[no key 0.00003s] ()
+
+CREATE TABLE city (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	url VARCHAR, 
+	"adminId" INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY("adminId") REFERENCES admin (id)
+)
+
+
+[no key 0.00003s] ()
+
+CREATE TABLE usercity (
+	id INTEGER NOT NULL, 
+	"cityId" INTEGER, 
+	"userId" INTEGER, 
+	year VARCHAR, 
+	month VARCHAR, 
+	weather_params VARCHAR, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY("cityId") REFERENCES city (id), 
+	FOREIGN KEY("userId") REFERENCES user (id)
+)
+
+
+[no key 0.00005s] ()
+
+CREATE TABLE weatherparameter (
+	id INTEGER NOT NULL, 
+	year_month_param VARCHAR, 
+	"values" VARCHAR, 
+	"cityId" INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY("cityId") REFERENCES city (id)
+)
+
+
+[no key 0.00003s] ()
+COMMIT
+Portal started...
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Portal started...
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on https://192.168.0.121:5009/ (Press CTRL+C to quit)
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Portal started...
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on https://192.168.0.121:5009/ (Press CTRL+C to quit)
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Portal started...
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on https://192.168.0.121:5009/ (Press CTRL+C to quit)
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Inside ETL.
+BEGIN (implicit)
+SELECT city.id AS city_id, city.name AS city_name, city.url AS city_url, city."adminId" AS "city_adminId" 
+FROM city
+[generated in 0.00037s] ()
+Inside add_user
+Received request:None
+Exception on /users [POST]
+Traceback (most recent call last):
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/application.py", line 396, in add_user
+    name = data['name']
+           ~~~~^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+127.0.0.1 - - [27/Nov/2025 15:07:58] "[35m[1mPOST /users HTTP/1.1[0m" 500 -
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Portal started...
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on https://192.168.0.121:5009/ (Press CTRL+C to quit)
+BEGIN (implicit)
+PRAGMA main.table_info("admin")
+[raw sql] ()
+PRAGMA main.table_info("user")
+[raw sql] ()
+PRAGMA main.table_info("city")
+[raw sql] ()
+PRAGMA main.table_info("usercity")
+[raw sql] ()
+PRAGMA main.table_info("weatherparameter")
+[raw sql] ()
+COMMIT
+Inside add_user
+Received request:None
+Exception on /users [POST]
+Traceback (most recent call last):
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/application.py", line 396, in add_user
+    name = data['name']
+           ~~~~^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+127.0.0.1 - - [27/Nov/2025 15:10:47] "[35m[1mPOST /users HTTP/1.1[0m" 500 -
+Inside ETL.
+BEGIN (implicit)
+SELECT city.id AS city_id, city.name AS city_name, city.url AS city_url, city."adminId" AS "city_adminId" 
+FROM city
+[generated in 0.00018s] ()
+Inside add_user
+Received request:None
+Exception on /users [POST]
+Traceback (most recent call last):
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/venv/lib/python3.13/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/rahulrajamani/Documents/GitHub/Assignment5/application.py", line 396, in add_user
+    name = data['name']
+           ~~~~^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+127.0.0.1 - - [27/Nov/2025 15:10:59] "[35m[1mPOST /users HTTP/1.1[0m" 500 -
