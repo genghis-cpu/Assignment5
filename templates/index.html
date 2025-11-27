@@ -30,7 +30,7 @@
     <div><h5>Personal Weather Portal</h5></div>
     <br>
     <div>
-      <form action="login" method="post" class="form-signin">
+      <form action="/login" method="post" class="form-signin">
           <label for="username" class="sr-only"><b>Username</b></label>
           <input type="text" name="username" placeholder="Username" required>
 
@@ -45,12 +45,19 @@
 
           <button type="submit" class="btn btn-primary">Login</button>
       </form>
+
       <!--
 	 Assignment 5:
 	 - Add a horizontal rule
 	 - Add a form with "login-using-google" button
 	 - Connect the form to the "authorize" method in application.py
       -->
+      <hr>
+
+      <form action="{{ url_for('authorize') }}" method="post" class="form-signin" style="margin-top: 10px;">
+          <button type="submit" class="btn btn-danger">Login using Google</button>
+      </form>
+
   </div>
   <div><h6><a href="https://www.cs.utexas.edu/~devdatta">Contact us</a></h6></div>
   </div>
